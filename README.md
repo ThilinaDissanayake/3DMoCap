@@ -4,6 +4,5 @@
 By syncing their recorded video with the movements of the 3D model, the necesity to record training using multiple cameras, and recording the same movement/pose from several angles get elemenated. 
 From the students' perspective, they are given the ability to rotate this 3D model according to their wish and learn more complex movements with ease. 
 
-
-https://user-images.githubusercontent.com/32677026/139697876-6afe5ef4-7ef1-4f0c-ab8a-1fc0bd9fd415.mp4
+https://user-images.githubusercontent.com/32677026/139699966-f79287c5-a944-4156-b4a1-df02c255d426.mp4
 
