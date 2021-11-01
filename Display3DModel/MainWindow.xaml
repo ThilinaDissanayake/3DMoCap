@@ -1,0 +1,77 @@
+﻿<Window x:Class="Display3DModel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:helix="http://helix-toolkit.org/wpf"
+        xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid RenderTransformOrigin="0.686,0.508">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="194*"/>
+            <ColumnDefinition Width="325*"/>
+        </Grid.ColumnDefinitions>
+        <hx:Viewport3DX xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+                            x:Name="viewport3DX" CameraMode="Inspect" CoordinateSystemHorizontalPosition="0.8"
+                            ShowCameraTarget="True" ShowCoordinateSystem="True" ShowViewCube="False" UseDefaultGestures="False" ZoomExtentsWhenLoaded="False" Margin="0.4,0,0.4,-0.2" Grid.Column="1">
+            <hx:Viewport3DX.InputBindings>
+                <KeyBinding Key="B" Command="hx:ViewportCommands.BackView" />
+                <KeyBinding Key="F" Command="hx:ViewportCommands.FrontView" />
+                <KeyBinding Key="U" Command="hx:ViewportCommands.TopView" />
+                <KeyBinding Key="D" Command="hx:ViewportCommands.BottomView" />
+                <KeyBinding Key="L" Command="hx:ViewportCommands.LeftView" />
+                <KeyBinding Key="R" Command="hx:ViewportCommands.RightView" />
+                <KeyBinding Command="hx:ViewportCommands.ZoomExtents" Gesture="Control+E" />
+                <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
+                <!--<MouseBinding Command="hx:ViewportCommands.Zoom" Gesture="MiddleClick" />-->
+                <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
+            </hx:Viewport3DX.InputBindings>
+
+            <hx:Viewport3DX.EffectsManager>
+                <hx:DefaultEffectsManager />
+            </hx:Viewport3DX.EffectsManager>
+            <hx:Viewport3DX.Camera>
+                <hx:OrthographicCamera x:Name="MyPersCam" FarPlaneDistance="Infinity"/>
+                <!--<hx:PerspectiveCamera Position="{Binding Camera3Dpoint}" 
+                                                  UpDirection="{Binding CameraUpDirection}"
+                                                  LookDirection="{Binding CameraLookDirection}"
+                                                  FieldOfView="60"
+                                                  FarPlaneDistance="100000"/>-->
+            </hx:Viewport3DX.Camera>
+            <hx:GroupModel3D x:Name="groupModelX" />
+            <!--<hx:AmbientLight3D Color="White" />-->
+            <!--<hx:AmbientLight3D x:Name="ambLight" />-->
+            <!--<hx:PointLight3D x:Name="pointLight" Position="{Binding CameraLookDirection}" Color="White"/>-->
+            
+            <!--<hx:PointLight3D Position="{Binding CameraLookDirection}" />-->
+
+            <hx:ShadowMap3D OrthoWidth="200" />
+            <hx:DirectionalLight3D Direction="0, -0.5, -1" IsRendering="True" Color="White" />
+            <hx:DirectionalLight3D Direction="0, 0.5, 1" IsRendering="True" Color="White"/>
+
+            <!--<hx:AxisPlaneGridModel3D GridPattern="Tile" IsRendering="True" GridThickness="50"/>-->
+            
+                <!--<hx:PostEffectMeshXRayGrid />-->
+            
+
+        </hx:Viewport3DX>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <MediaElement LoadedBehavior="Manual" Name="mePlayer" Margin="0,0,-0.4,0.4" />
+            <StackPanel Grid.Row="1">
+                <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
+                <WrapPanel HorizontalAlignment="Center">
+                    <CheckBox Name="checkReplay" Margin="5,0" Checked="checkReplay_Checked" Unchecked="checkReplay_Unchecked">Replay</CheckBox>
+                    <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>
+                    <Button Name="btnPause" Margin="5,0" Click="btnPause_Click">Pause</Button>
+                    <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
+    
+</Window>
